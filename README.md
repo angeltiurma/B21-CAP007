@@ -1,7 +1,4 @@
 ### Hi there 👋
-
-<!--
-**B21-CAP007/B21-CAP007** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 ## MACHINE LEARNING
 
 ### 1. Setting up the environment
@@ -161,4 +158,12 @@ and use this command to export the model we trained
 ```
 python exporter_main_v2.py \ --trained_checkpoint_dir training \ --output_directory inference_graph \ --pipeline_config_path training/ssd_mobilenet_v2_320x320_coco17_tpu-8.config
 ```
+### RESOURCES MATERIAL
+- https://github.com/TannerGilbert/Tensorflow-Object-Detection-API-Train-Model
+- https://www.youtube.com/watch?v=cvyDYdI2nEI&t=714s
+
+
+
+<!--
+**B21-CAP007/B21-CAP007** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
