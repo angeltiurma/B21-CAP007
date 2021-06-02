@@ -1,0 +1,10 @@
+[Unit]
+Description=Acne Detection API 
+After=syslog.target network.target auditd.service
+
+[Service]
+ExecStart=/opt/acne_detection/app.py
+ExecStop=/bin/kill -TERM $MAINPID
+
+[Install]
+WantedBy=multi-user.target
