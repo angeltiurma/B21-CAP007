@@ -158,12 +158,80 @@ and use this command to export the model we trained
 ```
 python exporter_main_v2.py \ --trained_checkpoint_dir training \ --output_directory inference_graph \ --pipeline_config_path training/ssd_mobilenet_v2_320x320_coco17_tpu-8.config
 ```
+
+## CLOUD COMPUTING
+
+### 1. Setting up the environment
+Build a VM instance in Google Cloud Platform (for this case, we use Linux OS for the VM) and Setting up our VM with the environment. The environement just almost same with Machine Learning, We need to install Object Detection API to our VM using these steps bellow.
+1. Next to the instance name, click SSH.
+2. Enter the following command to switch to the root user:
+```
+sudo -i
+```
+
+*** Install the Object Detection API ***
+1. Install the prerequisite packages.
+```
+apt-get update
+apt-get install -y protobuf-compiler python3-pil python3-lxml python3-pip python3-dev git
+pip3 install -U pip
+python3 -m pip install Flask==1.1.1 WTForms==2.2.1 Flask_WTF==0.14.2 Werkzeug==0.16.0
+```
+
+2. Install the Object Detection API library.
+```
+cd /opt
+```
+And then we should install tensorflow model for our object detection using git clone :
+```git clone https://github.com/tensorflow/models```
+```
+cd models/research
+```
+We also need to install protobuf, use this link bellow to download it.
+>https://github.com/protocolbuffers/protobuf/releases
+
+Then we should to follow this step below for the installation.
+
+```
+Compile protos.
+protoc object_detection/protos/*.proto --python_out=.
+Install TensorFlow Object Detection API.
+cp object_detection/packages/tf2/setup.py .
+python -m pip install .
+```
+if you're using protobuf version 3.5 or higher you should use this command
+
+```python use_protobuf.py <path to directory> <path to protoc file>```
+
+### 2. Deploy the ML Model and launch the demo web application
+1. Install the application.
+```
+cd $HOME
+mkdir acne_detection
+cd acne_detection
+git clone https://github.com/B21-CAP007/B21-CAP007/tree/main/Cloud_Computing
+cp -a acne_detection /opt/
+chmod u+x /opt/acne_detection/app.py
+cp /opt/acne_detection/object-detection.service /etc/systemd/system/
+```
+
+2. Launch the application.
+```
+systemctl daemon-reload
+systemctl enable object-detection
+systemctl start object-detection
+systemctl status object-detection
+```
+
+3. Launch the demo website
+Using a web browser, access the static IP from the external IP Address our VM instance. and then just upload an image file with a JPEG, JPG, or PNG extension. The application shows the result of the object detection inference. Depending on the size of the image, it might take up to 30 seconds to upload the image. 
+
+*** Your API ready to serve ***
+
 ### RESOURCES MATERIAL
 - https://github.com/TannerGilbert/Tensorflow-Object-Detection-API-Train-Model
 - https://www.youtube.com/watch?v=cvyDYdI2nEI&t=714s
-
-
-
+- https://cloud.google.com/architecture/creating-object-detection-application-tensorflow
 <!--
 **B21-CAP007/B21-CAP007** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
