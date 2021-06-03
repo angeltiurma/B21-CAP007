@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Severitas dan Rekomendasi</title>
+
+    <link rel="stylesheet" href="C:\Users\LoudryPC\Desktop\Project\aiplatform\Fix_Code_API\templates\static\styles\style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="jumbotron">
+        <h1>Nettoie ton visage</h1>
+        <p>Acne Detection</p>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/detection">Home</a></li>
+          <li><a href="/recommendations">Recommendations</a></li>
+          <li><a href="/about">About Us</a></li>
+          
+        </ul>
+      </nav>
+    </header>
+    <h1 class="tittle">Severity dan Recommendations</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h2 class="text-h2">Level {{recoms['level']}} </h2>
+          <p>Description : </p>
+          <p>{{recoms['desc']}}</p>
+        </div>
+
+        <div class="col">
+          <h2 class="text-h2">Recommendations</h2>
+          <p>{{recoms['recom']}}</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

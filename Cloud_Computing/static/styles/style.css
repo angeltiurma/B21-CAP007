@@ -1,0 +1,168 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.jumbotron {
+  font-size: 20px;
+  padding: 15px;
+  background-color: #4a3933;
+  text-align: center;
+  color: white;
+}
+
+header {
+  display: inline;
+}
+
+nav {
+  position: sticky;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+  font-family: sans-serif;
+}
+
+nav ul {
+  background: #e45826;
+  list-style: none;
+  position: relative;
+  display: inline-table;
+  width: 100%;
+}
+
+nav ul li {
+  float: left;
+}
+
+nav ul li a {
+  display: block;
+  padding: 25px;
+  color: #fff;
+  text-decoration: none;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  padding: 20px;
+  overflow: auto;
+}
+
+h2,
+h3 {
+  text-align: center;
+  /* line-height: 3; */
+}
+
+p {
+  line-height: 1.5;
+  font-size: medium;
+  font-family: sans-serif;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+#content {
+  float: left;
+  width: 100%;
+}
+
+figure > img {
+  width: 480px;
+  display: block;
+  margin: auto;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: white;
+  background-color: #f0a500;
+}
+
+/* rekom */
+/* .container {
+  background-color: #eaeaea;
+} */
+
+.row {
+  display: flex;
+}
+
+.col {
+  width: 100%;
+  margin: 2em;
+  padding: 20px 30px 20px 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.text-h2 {
+  color: dodgerblue;
+  padding-bottom: 15px;
+}
+
+.tittle {
+  text-align: center;
+  margin: 1em;
+}
+
+ol > li {
+  line-height: 1.5;
+}
+
+.team-members {
+  margin-top: 100px;
+}
+
+.team-member {
+  border: 1px solid #eee;
+  margin-bottom: 30px;
+}
+
+.team-member img {
+  overflow: hidden;
+  height: 250px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.team-member .down-content {
+  padding: 30px;
+  text-align: center;
+}
+
+.team-member .thumb-container {
+  position: relative;
+}
+
+.team-member .down-content h4 {
+  font-size: 17px;
+  color: #1a6692;
+  margin-bottom: 8px;
+}
+
+.team-member .down-content span {
+  display: block;
+  font-size: 13px;
+  color: #f33f3f;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  {}
