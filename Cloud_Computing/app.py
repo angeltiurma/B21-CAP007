@@ -162,7 +162,7 @@ def detect_objects(image_path):
   return result, converted_count
 
 def counting(con_count):
-  global str_count
+  global str_count #bocor
   str_count = con_count
 
 @app.route('/')
@@ -186,6 +186,42 @@ def post():
     
   else:
     return redirect(url_for('upload'))
+
+@app.route('/recommendations', methods=['GET'])
+def recom():
+  count = int(str_count)
+  if count<=5 and count>0:
+    recoms = {
+      "level" : "Low/Mild",
+      "desc" : "Hardly visible from 2.5 meters away; a few scattered comedones and a few small papules; and very few pustules, comedones, and papules",
+      "recom" : "Over-the-counter medicine helps! Benzoyl peroxide is a bactericidal agent that comes in the form of creams and gels in a variety of manners and is proven to be the most effective for treatment of mild to moderate mixed acne when used in combination with topical retinoids!\nA diet plan may also help in complementing this treatment regime as there have been numerous studies that show that there is a correlation between chocolate and milk consumption with acne/lesions breakout.\nTherapy through skin care clinics should also be considered. For Asian patients, there have been studies that show Chemical peels for acne and acne scars have been shown to be safe and effective. "
+    }
+    
+  elif count > 5 and count <=10:
+    recoms = {
+      "level" : "Moderate",
+      "desc" : "Easily recognizable; less than half of the affected area is involved; many comedones, papules, and pustules",
+      "recom" : "Over-the-counter medicine helps! Benzoyl peroxide is a bactericidal agent that comes in the form of creams and gels in a variety of manners and is proven to be the most effective for treatment of mild to moderate mixed acne when used in combination with topical retinoids!\nYou may also consider getting oral antibiotics. Based on expert consensus on relative effectiveness, they recommend using doxycycline and minocycline (minocin). Taking a dosage of 50 to 100 mg once or twice per day. It should be noted however that once the severity of the acne has lowered, that you should stop taking oral antibiotics and instead switch over to over-the-counter medicine instead.\nTherapy through skin care clinics should also be considered. For Asian patients, there have been studies that show Chemical peels for acne and acne scars have been shown to be safe and effective. Photodynamic Therapy have been shown to be effective in moderate-to-severe acne."
+    }
+  elif count > 10 and count <=20:
+    recoms = {
+      "level" : "Severe",
+      "desc" : "Entire area is involved; covered with comedones, numerous pustules and papules, a few nodules and cysts.",
+      "recom" : "Consult with a dermatologist immediately. Oral antibiotics helps a lot but needs a doctor's prescription. Based on expert consensus on relative effectiveness, they recommend using doxycycline and minocycline (minocin). Taking a dosage of 50 to 100 mg once or twice per day. A minimum duration of six weeks is commonly required to see clinical improvement but it is not recommended to continue using these oral options for more than 3-4 months. However, these should be taken with other topical agents such as topical retinoids which has the full recommendation of experts!\nIt should be noted however that once the severity of the acne has lowered to mild levels, you should stop taking oral antibiotics and instead switch over to over-the-counter medicine such as topical retinoids that come in the form of cream and gels.\nTherapy through skin care clinics should also be considered. Photodynamic Therapy have been shown to be effective in moderate-to-severe acne."
+    }
+  elif count > 20:
+    recoms = {
+      "level" : "Very Severe",
+      "desc" : "Highly inflammatory acne covering the affected area, nodules and cysts present",
+      "recom" : "Consult with a dermatologist immediately, there are many studies that show that oral isotretinoin is effective for severe recalcitrant acne, however, it requires a doctor’s discretion or done in accordance with the region’s medical regulations.\nThere are many variables which come into play with these levels of acne, and it should be noted that therapic measures from expert dermatologists will help the most."
+    }
+  else :
+    recoms = {
+      "level" : "None",
+      "desc"  : "Your Face is Clean",
+      "recom" : "Stay Healthy"
+    }
+  return render_template("rekom.html", recoms=recoms)
 
 #mobile API
 #mobile version 2
