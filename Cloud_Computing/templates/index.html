@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <!--<title>Acne Detection</title>-->
+    <link rel='shortcut icon' href='favicon.ico'/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+
+    <script language="javascript" type="text/javascript">
+      function ChangePhoto(name, img) {
+        img = typeof img !== 'undefined' ? img : "{{ result['original'] }}";
+        target = document.getElementById("label");
+        target.innerHTML = name;
+        target = document.getElementById("photo");
+        target.src = img;
+      }
+
+      function WaitDisplay() {
+        target = document.getElementById("result");
+        target.style.display="none";
+        target = document.getElementById("loading");
+        target.style.display="";
+        setTimeout(function() {
+          document.getElementById("upload").submit();         
+          }, 100);
+        }
+    </script>
+
+  </head>
+  <body>
+    <header>
+      <div class="jumbotron">
+      <h1>Nettoie ton visage</h1>
+      <p>Acne Detection</p>
+    </div>
+    <nav class="navbaar">
+      <ul>
+        <li><a href="/detection" class="nav-link click">Home</a></li>
+        <li><a href="/recommendations" class="nav-link click">Recommendations</a></li>
+        <li><a href="/about" class="nav-link click">About Us</a></li>
+        
+      </ul>
+    </nav>
+    </header>
+
+    <main>
+    <div id="content">
+    <article id="Home" class="card">
+      <header>
+    {% from "_formhelpers.html" import render_field %}
+
+    <h3>Upload a color photo file.</h3>
+    <div>
+      <form id="upload" method=post action={{ url_for('post') }} enctype="multipart/form-data">
+        {{ render_field(photo_form.input_photo) }}
+        <p><input type="button" onclick="WaitDisplay();" value="Upload"></p>
+      </form>
+    </div>
+    <div id="result" >
+      {% if result|length > 0 %}
+        <br>
+        <div id="label">original</div>
+        <div>
+          <figure>
+            <img id="photo" src="{{ result['original'] }}" alt="Photo" hspace="10" vspace="10" >
+          </figure>
+        </div>
+        <br><br><br>
+        <p>
+          <a href="javascript:void(0);" onclick="ChangePhoto('original');">original</a>
+          </br>
+          {% for name, img in result.items() %}
+            {% if name != 'original' %}
+              <a href="javascript:void(0);"
+                 onclick="ChangePhoto('{{ name }}', '{{ result[ name ] }}');">{{ name }}</a>
+              </br>
+            {% endif %}
+          {% endfor %}
+        </p>
+      {% endif %}
+    </div>
+    <div id="loading" style="display:none">
+      <h2>Detecting Objects...</h2>
+    </div>
+    </header>
+    </article>
+
+  </div>
+  </main>
+
+  <footer>
+    <p>Nettoie ton visage &copy; 2021</p>
+  </footer>
+
+
+  <script>
+    let navbar = document.querySelector(".navbar");
+    let navlink = document.querySelectorAll(".nav-link");
+
+    navlink.forEach(function (event) {
+    event.addEventListener("click", function () {
+      navbar.querySelector(".active").classList.remove("active");
+      event.classList.add("active");
+    });
+    });
+  </script>
+
+  </body>
+</html>
