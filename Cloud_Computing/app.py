@@ -170,6 +170,14 @@ def upload():
   photo_form = PhotoForm(request.form)
   return render_template('index.html', photo_form=photo_form, result={}, count="")
 
+@app.route('/home')
+def home():
+  return redirect(url_for('upload'))
+
+@app.route('/about')
+def about():
+  return render_template('about.html')
+
 #Web application API
 @app.route('/detection', methods=['GET', 'POST'])
 def post():
